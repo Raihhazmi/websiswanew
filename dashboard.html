@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Guru/Admin</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+
+      .header {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px;
+        text-align: center;
+      }
+
+      .header .logout-btn,
+      .header .back-btn {
+        float: right;
+        margin-left: 10px;
+        padding: 10px 20px;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      .header .logout-btn {
+        background-color: #f44336;
+      }
+
+      .header .back-btn {
+        background-color: #2196f3;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        background: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        text-align: center;
+      }
+
+      .table-container {
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+
+      th {
+        background-color: #4caf50;
+        color: white;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      .form-container {
+        margin-top: 20px;
+      }
+
+      .form-group {
+        margin: 10px 0;
+      }
+
+      .form-group label {
+        display: block;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+      }
+
+      button {
+        padding: 10px 15px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      footer {
+        margin-top: 20px;
+        background-color: #333;
+        color: white;
+        padding: 10px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Dashboard Guru/Admin</h1>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+      <button class="back-btn" onclick="goBack()">
+        Kembali ke Halaman Utama
+      </button>
+    </div>
+
+    <div class="container">
+      <h2>Data Siswa</h2>
+      <div class="table-container">
+        <table id="data-siswa">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama Siswa</th>
+              <th>Kelas</th>
+              <th>Nilai Ujian</th>
+              <th>Nilai Tugas</th>
+              <th>Nilai Kuis</th>
+              <th>Pencapaian Akademik</th>
+              <th>Progres Pembelajaran</th>
+              <th>Kehadiran</th>
+              <th>Perilaku</th>
+              <th>Kegiatan Ekstrakurikuler</th>
+              <th>Penilaian Sikap</th>
+              <th>Data Kesehatan</th>
+              <th>Umpan Balik</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Data siswa akan diisi di sini -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="form-container">
+        <h2>Tambah/Edit Data Siswa</h2>
+        <form id="form-siswa" onsubmit="return saveData(event)">
+          <div class="form-group">
+            <label for="nama">Nama Siswa:</label>
+            <input type="text" id="nama" name="nama" required />
+          </div>
+          <div class="form-group">
+            <label for="kelas">Kelas:</label>
+            <input type="text" id="kelas" name="kelas" required />
+          </div>
+          <div class="form-group">
+            <label for="nilaiUjian">Nilai Ujian:</label>
+            <input type="number" id="nilaiUjian" name="nilaiUjian" required />
+          </div>
+          <div class="form-group">
+            <label for="nilaiTugas">Nilai Tugas:</label>
+            <input type="number" id="nilaiTugas" name="nilaiTugas" required />
+          </div>
+          <div class="form-group">
+            <label for="nilaiKuis">Nilai Kuis:</label>
+            <input type="number" id="nilaiKuis" name="nilaiKuis" required />
+          </div>
+          <div class="form-group">
+            <label for="pencapaianAkademik">Pencapaian Akademik:</label>
+            <input
+              type="text"
+              id="pencapaianAkademik"
+              name="pencapaianAkademik"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="progresPembelajaran">Progres Pembelajaran:</label>
+            <input
+              type="text"
+              id="progresPembelajaran"
+              name="progresPembelajaran"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="kehadiran">Kehadiran (Rekap):</label>
+            <input type="text" id="kehadiran" name="kehadiran" required />
+          </div>
+          <div class="form-group">
+            <label for="perilaku">Catatan Perilaku:</label>
+            <input type="text" id="perilaku" name="perilaku" required />
+          </div>
+          <div class="form-group">
+            <label for="ekstrakurikuler">Kegiatan Ekstrakurikuler:</label>
+            <input
+              type="text"
+              id="ekstrakurikuler"
+              name="ekstrakurikuler"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="penilaianSikap">Penilaian Sikap:</label>
+            <input
+              type="text"
+              id="penilaianSikap"
+              name="penilaianSikap"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="dataKesehatan">Data Kesehatan:</label>
+            <input
+              type="text"
+              id="dataKesehatan"
+              name="dataKesehatan"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="umpanBalik">Umpan Balik:</label>
+            <input type="text" id="umpanBalik" name="umpanBalik" required />
+          </div>
+          <input type="hidden" id="editIndex" />
+          <button type="submit">Simpan</button>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 Web Pemantauan Siswa. All rights reserved.</p>
+    </footer>
+
+    <script>
+      let editingIndex = -1;
+      let siswaData = [
+        // Data awal siswa
+        {
+          nama: "John Doe",
+          kelas: "10A",
+          nilaiUjian: 85,
+          nilaiTugas: 90,
+          nilaiKuis: 80,
+          pencapaianAkademik: "Baik",
+          progresPembelajaran: "Aktif",
+          kehadiran: "90%",
+          perilaku: "Baik",
+          ekstrakurikuler: "Basket",
+          penilaianSikap: "Positif",
+          dataKesehatan: "Sehat",
+          umpanBalik: "Bagus",
+        },
+      ];
+
+      // Fungsi untuk mengambil data siswa
+      function loadData() {
+        const tbody = document.querySelector("#data-siswa tbody");
+        tbody.innerHTML = "";
+        siswaData.forEach((siswa, index) => {
+          const row = tbody.insertRow();
+          row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${siswa.nama}</td>
+                    <td>${siswa.kelas}</td>
+                    <td>${siswa.nilaiUjian}</td>
+                    <td>${siswa.nilaiTugas}</td>
+                    <td>${siswa.nilaiKuis}</td>
+                    <td>${siswa.pencapaianAkademik}</td>
+                    <td>${siswa.progresPembelajaran}</td>
+                    <td>${siswa.kehadiran}</td>
+                    <td>${siswa.perilaku}</td>
+                    <td>${siswa.ekstrakurikuler}</td>
+                    <td>${siswa.penilaianSikap}</td>
+                    <td>${siswa.dataKesehatan}</td>
+                    <td>${siswa.umpanBalik}</td>
+                    <td>
+                      <button onclick="editData(${index})">Edit</button>
+                      <button onclick="deleteData(${index})">Hapus</button>
+                    </td>
+                `;
+        });
+      }
+
+      // Fungsi untuk menyimpan data siswa
+      function saveData(event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const data = Object.fromEntries(formData.entries());
+
+        if (editingIndex >= 0) {
+          // Edit data siswa
+          siswaData[editingIndex] = data;
+          editingIndex = -1;
+        } else {
+          // Tambah data siswa baru
+          siswaData.push(data);
+        }
+
+        event.target.reset();
+        loadData();
+      }
+
+      // Fungsi untuk mengedit data siswa
+      function editData(index) {
+        editingIndex = index;
+        const siswa = siswaData[index];
+        document.getElementById("nama").value = siswa.nama;
+        document.getElementById("kelas").value = siswa.kelas;
+        document.getElementById("nilaiUjian").value = siswa.nilaiUjian;
+        document.getElementById("nilaiTugas").value = siswa.nilaiTugas;
+        document.getElementById("nilaiKuis").value = siswa.nilaiKuis;
+        document.getElementById("pencapaianAkademik").value =
+          siswa.pencapaianAkademik;
+        document.getElementById("progresPembelajaran").value =
+          siswa.progresPembelajaran;
+        document.getElementById("kehadiran").value = siswa.kehadiran;
+        document.getElementById("perilaku").value = siswa.perilaku;
+        document.getElementById("ekstrakurikuler").value =
+          siswa.ekstrakurikuler;
+        document.getElementById("penilaianSikap").value = siswa.penilaianSikap;
+        document.getElementById("dataKesehatan").value = siswa.dataKesehatan;
+        document.getElementById("umpanBalik").value = siswa.umpanBalik;
+        document.getElementById("editIndex").value = index;
+      }
+
+      // Fungsi untuk menghapus data siswa
+      function deleteData(index) {
+        siswaData.splice(index, 1);
+        loadData();
+      }
+
+      // Fungsi untuk logout
+      function logout() {
+        alert("Logout berhasil!");
+        // Redirect ke halaman login atau homepage
+      }
+
+      // Fungsi untuk kembali ke halaman utama
+      function goBack() {
+        window.location.href = "index.html"; // Ubah sesuai dengan file halaman utama
+      }
+
+      // Load data ketika halaman dimuat
+      window.onload = loadData;
+    </script>
+  </body>
+</html>

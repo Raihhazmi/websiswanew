@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Pemantauan Siswa</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .header {
+        background-color: #4caf50;
+        color: white;
+        padding: 15px;
+        font-size: 24px;
+      }
+
+      .content {
+        margin-top: 50px;
+      }
+
+      .card {
+        display: inline-block;
+        background-color: white;
+        width: 250px;
+        margin: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      .card:hover {
+        transform: scale(1.05);
+      }
+
+      .card h3 {
+        margin-bottom: 20px;
+      }
+
+      .card button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .card button:hover {
+        background-color: #45a049;
+      }
+
+      footer {
+        margin-top: 50px;
+        background-color: #333;
+        color: white;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Web Pemantauan Siswa</h1>
+    </div>
+
+    <div class="container content">
+      <div class="card">
+        <h3>Data Siswa</h3>
+        <button onclick="location.href='data-siswa.html'">
+          Lihat Data Siswa
+        </button>
+      </div>
+      <div class="card">
+        <h3>Login Guru/Admin</h3>
+        <button onclick="location.href='guru-login.html'">
+          Masuk sebagai Guru
+        </button>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 Web Pemantauan Siswa. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

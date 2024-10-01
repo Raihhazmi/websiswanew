@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Siswa</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+
+      .header {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px;
+        text-align: center;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        background: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        text-align: center;
+      }
+
+      .table-container {
+        overflow-x: auto; /* Enable horizontal scrolling if the table is too wide */
+      }
+
+      table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+
+      th {
+        background-color: #4caf50;
+        color: white;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      footer {
+        margin-top: 20px;
+        background-color: #333;
+        color: white;
+        padding: 10px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Data Siswa</h1>
+    </div>
+
+    <div class="container">
+      <h2>Daftar Siswa</h2>
+      <div class="table-container">
+        <table id="data-siswa">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama Siswa</th>
+              <th>Kelas</th>
+              <th>Nilai Ujian</th>
+              <th>Nilai Tugas</th>
+              <th>Nilai Kuis</th>
+              <th>Pencapaian Akademik</th>
+              <th>Progres Pembelajaran</th>
+              <th>Kehadiran</th>
+              <th>Perilaku</th>
+              <th>Kegiatan Ekstrakurikuler</th>
+              <th>Penilaian Sikap</th>
+              <th>Data Kesehatan</th>
+              <th>Umpan Balik</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Data siswa akan diisi di sini -->
+          </tbody>
+        </table>
+      </div>
+      <button onclick="window.location.href='index.html'">
+        Kembali ke Halaman Utama
+      </button>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 Web Pemantauan Siswa. All rights reserved.</p>
+    </footer>
+
+    <script>
+      // Fungsi untuk mengambil data dari localStorage
+      function loadData() {
+        const siswaData = JSON.parse(localStorage.getItem("siswaData")) || [];
+        const tbody = document.querySelector("#data-siswa tbody");
+        tbody.innerHTML = "";
+        siswaData.forEach((siswa, index) => {
+          const row = tbody.insertRow();
+          row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${siswa.nama}</td>
+                    <td>${siswa.kelas}</td>
+                    <td>${siswa.nilaiUjian}</td>
+                    <td>${siswa.nilaiTugas}</td>
+                    <td>${siswa.nilaiKuis}</td>
+                    <td>${siswa.pencapaianAkademik}</td>
+                    <td>${siswa.progresPembelajaran}</td>
+                    <td>${siswa.kehadiran}</td>
+                    <td>${siswa.perilaku}</td>
+                    <td>${siswa.ekstrakurikuler}</td>
+                    <td>${siswa.penilaianSikap}</td>
+                    <td>${siswa.dataKesehatan}</td>
+                    <td>${siswa.umpanBalik}</td>
+                `;
+        });
+      }
+
+      window.onload = loadData;
+    </script>
+  </body>
+</html>
